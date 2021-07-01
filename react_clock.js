@@ -7,10 +7,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function FormattedDate(props) {
+    // 오전 00:00:00
+    // return <h2>{props.date.toLocaleTimeString()}</h2>;
+
+    // 00:00:00
+    var hours = String(props.date.getHours()).padStart(2, "0");
+    var minutes = String(props.date.getMinutes()).padStart(2, "0");
+    var seconds = String(props.date.getSeconds()).padStart(2, "0");
+
     return React.createElement(
-        'h2',
+        "h2",
         null,
-        props.date.toLocaleTimeString()
+        hours + ":" + minutes + ":" + seconds
     );
 }
 
@@ -27,7 +35,7 @@ var Clock = function (_React$Component) {
     }
 
     _createClass(Clock, [{
-        key: 'componentDidMount',
+        key: "componentDidMount",
         value: function componentDidMount() {
             var _this2 = this;
 
@@ -36,19 +44,19 @@ var Clock = function (_React$Component) {
             }, 1000);
         }
     }, {
-        key: 'componentWillUnmount',
+        key: "componentWillUnmount",
         value: function componentWillUnmount() {
             clearInterval(this.timerID);
         }
     }, {
-        key: 'tick',
+        key: "tick",
         value: function tick() {
             this.setState({
                 date: new Date()
             });
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(FormattedDate, { date: this.state.date });
         }

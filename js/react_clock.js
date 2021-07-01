@@ -1,5 +1,13 @@
 function FormattedDate(props) {
-    return <h2>{props.date.toLocaleTimeString()}</h2>;
+    // 오전 00:00:00
+    // return <h2>{props.date.toLocaleTimeString()}</h2>;
+
+    // 00:00:00
+    const hours = String(props.date.getHours()).padStart(2, "0");
+    const minutes = String(props.date.getMinutes()).padStart(2, "0");
+    const seconds = String(props.date.getSeconds()).padStart(2, "0");
+
+    return <h2>{`${hours}:${minutes}:${seconds}`}</h2>;
 }
 
 class Clock extends React.Component {
